@@ -1,7 +1,5 @@
 import { IArticles } from "./interfaces/INews";
 
-let cardsArr: IArticles[] = [];
-
 export function fetchAllCards(url: string) {
   fetch(url)
     .then((response: Response) => {
@@ -20,3 +18,5 @@ export function fetchAllCards(url: string) {
       console.error(error);
     });
 }
+
+export function se
