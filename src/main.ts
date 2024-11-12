@@ -62,23 +62,38 @@ function fetchAllCards(url: string) {
 
 const BASE_URL = `https://newsapi.org/v2/everything?`;
 const apiKey = "&apiKey=7db2c104c64a4d9f99dde5456344d6b0";
+let selectLangValue = "";
+let selectSortValue = "";
+selectLang.addEventListener("change", () => {
+  selectLangValue = "&language=" + selectLang.value;
 
-function generateURL(
-  inputTextValue: string,
-  selectLangValue: string,
-  selectSortValue: string
-) {
-  const searchInput = `q=${inputTextValue}`;
-  const language = `&language=${selectLangValue}`;
-  const sortBy = `&language=${selectLangValue}`;
-  const resultURL = `${BASE_URL}${searchInput}${language}${sortBy}${apiKey}`;
+  return selectLangValue;
+});
+
+selectSort.addEventListener("change", () => {
+  selectSortValue = "&sortBy=" + selectSort.value;
+
+  return selectSortValue;
+});
+function generateURL(inputTextValue: string) {
+  console.log(selectLangValue, selectSortValue);
+
+  const resultURL = `${BASE_URL}q=${inputTextValue}${selectLangValue}${selectSortValue}${apiKey}`;
+  console.log(resultURL);
+
   return resultURL;
 }
 
 btn?.addEventListener("click", () => {
-  const inputTextValue = inputText.value.trim().toLocaleLowerCase();
-  generateURL(inputTextValue);
-  fetchAllCards(
-    "https://newsapi.org/v2/everything?q=bitcoin&apiKey=5cd22826af6d402a83a0b97ac6d771eb"
-  );
+  const inputTextValue = inputText.value
+    .trim()
+    .toLocaleLowerCase()
+    .replace(" ", "");
+
+  fetchAllCards(generateURL(inputTextValue));
+});
+
+selectLang.addEventListener("change", () => {
+  const selectLangValue = selectLang.value;
+  console.log(selectLangValue);
 });
