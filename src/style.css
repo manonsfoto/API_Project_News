@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+input,
+button,
+select {
+  font-family: monospace, Courier;
+}
+body {
+  padding: 1rem 1rem 0 1rem;
+  margin: 0 auto;
+  flex-direction: column;
+  gap: 2rem;
+}
+.flex {
+  display: flex;
+  align-items: center;
+}
+form {
+  flex-direction: column;
+  gap: 1rem;
+  border: 1px solid black;
+  padding: 1rem;
+  border-radius: 1rem;
+  width: 20rem;
+}
+label {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+button {
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: tomato;
+  color: white;
+}
+
+input {
+  padding: 0.3rem;
+
+  border-radius: 0.5rem;
+}

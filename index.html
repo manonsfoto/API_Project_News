@@ -7,7 +7,28 @@
     <script type="module" src="/src/main.ts" defer></script>
     <title>News API</title>
   </head>
-  <body>
-    <h1>News API</h1>
+  <body class="flex">
+    <h1>NEWS APP</h1>
+    <form class="flex">
+      <label
+        >Suchbegriff
+        <input type="text" id="inputText" placeholder="Suchbegriff"
+      /></label>
+      <label
+        >Sprache
+        <select id="selectLang">
+          <option value="">Deutsch</option>
+          <option value="">English</option>
+        </select></label
+      >
+      <label
+        >Sortieren nach
+        <select id="selectLang">
+          <option value="">Relevanz</option>
+          <option value="">Latest</option>
+        </select></label
+      >
+      <button type="button">Suchen</button>
+    </form>
   </body>
 </html>
