@@ -1,9 +1,8 @@
 import "./style.css";
 
-const inputText = document.getElementById('inputText') as HTMLInputElement;
-const selectLang = document.getElementById('selectLang') as HTMLSelectElement;
-const selectSort = document.getElementById('selectSort') as HTMLSelectElement;
+const inputText = document.getElementById("inputText") as HTMLInputElement;
+const selectLang = document.getElementById("selectLang") as HTMLSelectElement;
+const selectSort = document.getElementById("selectSort") as HTMLSelectElement;
 
-function showList() {}
-
-function fetchList() {}
+function fetchAllNewsCards(url: string) {}
+function showNewsCards() {}
