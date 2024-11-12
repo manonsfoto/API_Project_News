@@ -19,6 +19,8 @@ function showCards(cards: INews[]) {
     })
 }
 
-function createCardElement(card: INews): HTMLElement{}
+function createCardElement(card: INews): HTMLElement{
+    const div = document.querySelector('div') as HTMLDivElement;
+}
 
 function fetchList() {}
