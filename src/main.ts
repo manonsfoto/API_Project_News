@@ -2,7 +2,7 @@ import "./style.css";
 import { INews, IArticles, ISource } from "./interfaces/INews";
 
 const BASE_URL = `https://newsapi.org/v2/everything?`;
-const EVERYTHING_URL = `${BASE_URL}domains=wsj.com&apiKey=7db2c104c64a4d9f99dde5456344d6b0`;
+
 const apiKey = "&apiKey=7db2c104c64a4d9f99dde5456344d6b0";
 const inputText = document.getElementById("inputText") as HTMLInputElement;
 const selectLang = document.getElementById("selectLang") as HTMLSelectElement;
@@ -56,7 +56,6 @@ function fetchAllCards(url: string) {
       return response.json();
     })
     .then((cards: IArticles[]) => {
-      cardsArr = [...cards];
       showCards(cards);
 
       return cardsArr;
@@ -76,6 +75,13 @@ function searchArticles() {
 //   const LANG_URL = `${BASE_URL}q=${inputTextValue}${apiKey}`;
 // });
 
-// function generateURL() {
-//   const resultURL = `${BASE_URL}q=${inputTextValue}${apiKey}`;
-// }
+function generateURL(
+  inputTextValue: string,
+  selectLangValue: string = "",
+  selectSortValue: string = ""
+) {
+  const searchInput = `q=${inputTextValue}`;
+  const language = `&language=${selectLangValue}`;
+  const sortBy = `&language=${selectLangValue}`;
+  const resultURL = `${BASE_URL}q=${inputTextValue}${apiKey}`;
+}
