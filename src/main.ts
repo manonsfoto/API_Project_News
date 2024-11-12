@@ -1,14 +1,14 @@
 import "./style.css";
 import { INews, IArticles, ISource } from "./interfaces/INews";
 
-const BASE_URL = `https://newsapi.org/v2/everything?`;
-
-const apiKey = "&apiKey=7db2c104c64a4d9f99dde5456344d6b0";
 const inputText = document.getElementById("inputText") as HTMLInputElement;
 const selectLang = document.getElementById("selectLang") as HTMLSelectElement;
 const selectSort = document.getElementById("selectSort") as HTMLSelectElement;
 const btn = document.querySelector("button") as HTMLButtonElement;
 const cardsWrapper = document.getElementById("cardsWrapper") as HTMLDivElement;
+
+const BASE_URL = `https://newsapi.org/v2/everything?`;
+const apiKey = "&apiKey=7db2c104c64a4d9f99dde5456344d6b0";
 
 let cardsArr: IArticles[] = [];
 
@@ -16,8 +16,7 @@ function showCards(cards: IArticles[]) {
   cardsWrapper.innerHTML = "";
 
   cards.forEach((card: IArticles) => {
-    console.log(card);
-    cardsWrapper.appendChild(createCardElement(card));
+    return cardsWrapper.appendChild(createCardElement(card));
   });
 }
 
@@ -55,25 +54,19 @@ function fetchAllCards(url: string) {
       }
       return response.json();
     })
-    .then((cards: IArticles[]) => {
-      showCards(cards);
-
-      return cardsArr;
+    .then((news: INews) => {
+      cardsArr = news.articles;
+      showCards(cardsArr);
     })
     .catch((error: Error) => {
       console.error(error);
     });
 }
 
-function searchArticles() {
-  const inputTextValue = inputText.value.trim().toLocaleLowerCase();
-  const SEARCH_URL = `${BASE_URL}q=${inputTextValue}${apiKey}`;
-}
-
-// selectLang?.addEventListener("change", () => {
-//   const selectLangValue = selectLang.value;
-//   const LANG_URL = `${BASE_URL}q=${inputTextValue}${apiKey}`;
-// });
+// function searchArticles() {
+//   const inputTextValue = inputText.value.trim().toLocaleLowerCase();
+//   const SEARCH_URL = `${BASE_URL}q=${inputTextValue}${apiKey}`;
+// }
 
 function generateURL(
   inputTextValue: string,
@@ -83,5 +76,14 @@ function generateURL(
   const searchInput = `q=${inputTextValue}`;
   const language = `&language=${selectLangValue}`;
   const sortBy = `&language=${selectLangValue}`;
-  const resultURL = `${BASE_URL}q=${inputTextValue}${apiKey}`;
+  const resultURL = `${BASE_URL}${searchInput}${language}${sortBy}${apiKey}`;
+  return resultURL;
 }
+
+btn?.addEventListener("click", () => {
+  const inputTextValue = inputText.value.trim().toLocaleLowerCase();
+  generateURL(inputTextValue);
+  fetchAllCards(
+    "https://newsapi.org/v2/everything?q=bitcoin&apiKey=5cd22826af6d402a83a0b97ac6d771eb"
+  );
+});
