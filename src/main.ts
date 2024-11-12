@@ -7,9 +7,6 @@ const selectSort = document.getElementById("selectSort") as HTMLSelectElement;
 const btn = document.querySelector("button") as HTMLButtonElement;
 const cardsWrapper = document.getElementById("cardsWrapper") as HTMLDivElement;
 
-const BASE_URL = `https://newsapi.org/v2/everything?`;
-const apiKey = "&apiKey=7db2c104c64a4d9f99dde5456344d6b0";
-
 let cardsArr: IArticles[] = [];
 
 function showCards(cards: IArticles[]) {
@@ -63,15 +60,13 @@ function fetchAllCards(url: string) {
     });
 }
 
-// function searchArticles() {
-//   const inputTextValue = inputText.value.trim().toLocaleLowerCase();
-//   const SEARCH_URL = `${BASE_URL}q=${inputTextValue}${apiKey}`;
-// }
+const BASE_URL = `https://newsapi.org/v2/everything?`;
+const apiKey = "&apiKey=7db2c104c64a4d9f99dde5456344d6b0";
 
 function generateURL(
   inputTextValue: string,
-  selectLangValue: string = "",
-  selectSortValue: string = ""
+  selectLangValue: string,
+  selectSortValue: string
 ) {
   const searchInput = `q=${inputTextValue}`;
   const language = `&language=${selectLangValue}`;
