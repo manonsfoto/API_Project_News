@@ -39,7 +39,7 @@ function createCardElement(card: IArticles): HTMLElement {
     div.appendChild(image);
   }
   const cardBtn = document.createElement("button") as HTMLButtonElement;
-  cardBtn.textContent = `<a href="${card.url}">Zum Artikel</a>`;
+  cardBtn.innerHTML = `<a href="${card.url}">Zum Artikel</a>`;
   cardBtn.classList.add("cardBtn");
   div.appendChild(cardBtn);
 
