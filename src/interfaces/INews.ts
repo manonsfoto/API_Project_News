@@ -5,17 +5,17 @@ export interface INews {
 }
 
 export interface IArticles {
-    source: ISource[],
-    author: string | undefined,
+    source: ISource,
+    author: string | null,
     title: string,
     description: string,
     url: string,
-    urlToImage: string | undefined,
-    publishedAt: string,
+    urlToImage: string | null,
+    publishedAt: Date,
     content: string,
 }
 
 export interface ISource {
-    id: string | undefined,
+    id: string | null,
     name: string
 }
