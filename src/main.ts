@@ -12,18 +12,39 @@ const cardsWrapper = document.getElementById("cardsWrapper") as HTMLDivElement;
 
 let cardsArr: IArticles[] = [];
 
-function showCards(cards: INews[]) {
-  cardsWrapper.innerHTML = "";
+function showCards(cards: IArticles[]) {
+    cardsWrapper.innerHTML = "";
 
-  cards.forEach((card: INews) => {
-    console.log(card);
-    cardsWrapper.appendChild(createCardElement(card));
-  });
+    cards.forEach((card: IArticles) => {
+        console.log(card);
+        cardsWrapper.appendChild(createCardElement(card));
+    });
 }
 
-function createCardElement(card: INews): HTMLElement {
-  const div = document.querySelector("div") as HTMLDivElement;
-  console.log(div);
+function createCardElement(card: IArticles): HTMLElement {
+    const div = document.createElement("div") as HTMLDivElement;
+    div.classList.add('card');
+
+    const title = document.createElement('h2') as HTMLHeadElement;
+    title.textContent = card.title;
+    div.appendChild(title);
+
+    const content = document.createElement('p') as HTMLParagraphElement;
+    content.textContent = card.content;
+    div.appendChild(content);
+
+    const image = document.createElement('img') as HTMLImageElement;
+    if(card.urlToImage){
+        image.src = card.urlToImage;
+        image.alt = "News Image";
+        div.appendChild(image);
+    }
+    const cardBtn = document.createElement('button') as HTMLButtonElement;
+    cardBtn.textContent = `<a href="${card.url}">Zum Artikel</a>`;
+    cardBtn.classList.add('cardBtn');
+    div.appendChild(cardBtn);
+
+    return div
 }
 
 function fetchAllCards(url: string) {
