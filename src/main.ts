@@ -3,7 +3,7 @@ import { INews, IArticles, ISource } from "./interfaces/INews";
 
 const BASE_URL = `https://newsapi.org/v2/everything?`;
 const EVERYTHING_URL = `${BASE_URL}domains=wsj.com&apiKey=7db2c104c64a4d9f99dde5456344d6b0`;
-
+const apiKey = "&apiKey=7db2c104c64a4d9f99dde5456344d6b0";
 const inputText = document.getElementById("inputText") as HTMLInputElement;
 const selectLang = document.getElementById("selectLang") as HTMLSelectElement;
 const selectSort = document.getElementById("selectSort") as HTMLSelectElement;
@@ -12,16 +12,16 @@ const cardsWrapper = document.getElementById("cardsWrapper") as HTMLDivElement;
 
 let cardsArr: IArticles[] = [];
 
-function showCards(cards: INews[]) {
+function showCards(cards: IArticles[]) {
   cardsWrapper.innerHTML = "";
 
-  cards.forEach((card: INews) => {
+  cards.forEach((card: IArticles) => {
     console.log(card);
     cardsWrapper.appendChild(createCardElement(card));
   });
 }
 
-function createCardElement(card: INews): HTMLElement {
+function createCardElement(card: IArticles): HTMLElement {
   const div = document.querySelector("div") as HTMLDivElement;
   console.log(div);
 }
@@ -44,3 +44,17 @@ function fetchAllCards(url: string) {
       console.error(error);
     });
 }
+
+function searchArticles() {
+  const inputTextValue = inputText.value.trim().toLocaleLowerCase();
+  const SEARCH_URL = `${BASE_URL}q=${inputTextValue}${apiKey}`;
+}
+
+// selectLang?.addEventListener("change", () => {
+//   const selectLangValue = selectLang.value;
+//   const LANG_URL = `${BASE_URL}q=${inputTextValue}${apiKey}`;
+// });
+
+// function generateURL() {
+//   const resultURL = `${BASE_URL}q=${inputTextValue}${apiKey}`;
+// }
