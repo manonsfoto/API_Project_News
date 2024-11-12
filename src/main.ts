@@ -1,6 +1,5 @@
 import "./style.css";
 import { INews, IArticles, ISource } from "./interfaces/INews";
-import { fetchAllCards } from "./function";
 
 const BASE_URL = `https://newsapi.org/v2/everything?`;
 const EVERYTHING_URL = `${BASE_URL}domains=wsj.com&apiKey=7db2c104c64a4d9f99dde5456344d6b0`;
@@ -27,4 +26,21 @@ function createCardElement(card: INews): HTMLElement {
   console.log(div);
 }
 
-function fetchList() {}
+function fetchAllCards(url: string) {
+  fetch(url)
+    .then((response: Response) => {
+      if (!response.ok) {
+        console.error("Response doesnt work");
+      }
+      return response.json();
+    })
+    .then((cards: IArticles[]) => {
+      cardsArr = [...cards];
+      showCards(cards);
+
+      return cardsArr;
+    })
+    .catch((error: Error) => {
+      console.error(error);
+    });
+}
