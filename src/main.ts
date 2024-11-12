@@ -64,6 +64,7 @@ const BASE_URL = `https://newsapi.org/v2/everything?`;
 const apiKey = "&apiKey=7db2c104c64a4d9f99dde5456344d6b0";
 let selectLangValue = "";
 let selectSortValue = "";
+
 selectLang.addEventListener("change", () => {
   selectLangValue = "&language=" + selectLang.value;
 
@@ -75,6 +76,7 @@ selectSort.addEventListener("change", () => {
 
   return selectSortValue;
 });
+
 function generateURL(inputTextValue: string) {
   console.log(selectLangValue, selectSortValue);
 
@@ -85,15 +87,7 @@ function generateURL(inputTextValue: string) {
 }
 
 btn?.addEventListener("click", () => {
-  const inputTextValue = inputText.value
-    .trim()
-    .toLocaleLowerCase()
-    .replace(" ", "");
+  const inputTextValue = inputText.value.trim().toLowerCase().replace(" ", "");
 
   fetchAllCards(generateURL(inputTextValue));
-});
-
-selectLang.addEventListener("change", () => {
-  const selectLangValue = selectLang.value;
-  console.log(selectLangValue);
 });
