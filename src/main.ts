@@ -61,7 +61,7 @@ function fetchAllCards(url: string) {
 }
 
 const BASE_URL = `https://newsapi.org/v2/everything?`;
-const apiKey = "&apiKey=7db2c104c64a4d9f99dde5456344d6b0";
+const apiKey = "&apiKey=" + import.meta.env.VITE_API_KEY;
 let selectLangValue = "";
 let selectSortValue = "";
 
